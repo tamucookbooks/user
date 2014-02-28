@@ -18,6 +18,12 @@ Attributes
     <td>default root home path</td>
     <td><tt>/home</tt></td>
   </tr>
+  <tr>
+    <td><tt>['user']['default_shell']</tt></td>
+    <td>String</td>
+    <td>default shell to use per platform</td>
+    <td><tt>/bin/bash</tt></td>
+  </tr>
 </table>
 
 Resource/Provider

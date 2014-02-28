@@ -16,7 +16,8 @@ action :create do
       action :create
     end
 
-    directory home_dir do
+    directory "#{new_resource.username}_home_dir" do
+      path home_dir
       action :create
       mode 0755
       owner new_resource.username
@@ -44,7 +45,7 @@ action :create do
     end
 
     unless new_resource.groups.nil?
-      case node.platform_family
+      case node['platform_family']
       when 'debian', 'fedora', 'suse', 'rhel'
         new_resource.groups.each do |grp|
           group grp do
@@ -85,7 +86,7 @@ action :remove do
 
   grp.run_action :remove
 
-  if grp.updated_by_last_action? or usr.updated_by_last_action?
+  if grp.updated_by_last_action? || usr.updated_by_last_action?
     new_resource.updated_by_last_action true
   else
     new_resource.updated_by_last_action false
@@ -94,7 +95,7 @@ end
 
 def ssh_keys
   if new_resource.ssh_keys.kind_of? String
-    [ new_resource.ssh_keys ]
+    [new_resource.ssh_keys]
   else
     new_resource.ssh_keys
   end
@@ -102,7 +103,7 @@ end
 
 def include_nodes
   if new_resource.include_nodes.kind_of? String
-    [ new_resource.include_nodes ]
+    [new_resource.include_nodes]
   else
     new_resource.include_nodes
   end
@@ -110,7 +111,7 @@ end
 
 def exclude_nodes
   if new_resource.exclude_nodes.kind_of? String
-    [ new_resource.exclude_nodes ]
+    [new_resource.exclude_nodes]
   else
     new_resource.exclude_nodes
   end
@@ -118,7 +119,7 @@ end
 
 def roles
   if new_resource.roles.kind_of? String
-    [ new_resource.roles ]
+    [new_resource.roles]
   else
     new_resource.roles
   end
@@ -136,15 +137,11 @@ end
 def add_user_account
   add_user = true
   unless include_nodes.nil?
-    unless include_nodes.include? node.name
-      add_user = false
-    end
+    add_user = false unless include_nodes.include? node.name
   end
 
   unless exclude_nodes.nil?
-    if exclude_nodes.include? node.name
-      add_user = false
-    end
+    add_user = false if exclude_nodes.include? node.name
   end
   add_user
 end
