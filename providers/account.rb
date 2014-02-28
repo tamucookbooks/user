@@ -1,5 +1,3 @@
-require 'mixlib/shellout'
-
 action :create do
   if add_user_account
     group new_resource.username do
@@ -60,11 +58,9 @@ action :create do
             action :create
           end
         end
-        groups = new_resource.groups.push(new_resource.username).join(' ')
-        add_grps = Mixlib::ShellOut.new("usermod -G #{groups} #{new_resource.username}")
-        add_grps.run_command
-        unless add_grps.exitstatus == 0
-          Chef::Log.error("Failed to add #{groups} to #{new_resource.username}: #{add_grps.stderr}")
+        groups = new_resource.groups.push(new_resource.username).join(',')
+        execute "add_#{new_resource.username}_to_groups" do
+          command "usermod -G #{groups} #{new_resource.username}"
         end
       end
     end
