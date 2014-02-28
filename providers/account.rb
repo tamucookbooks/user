@@ -117,14 +117,6 @@ def exclude_nodes
   end
 end
 
-def roles
-  if new_resource.roles.kind_of? String
-    [new_resource.roles]
-  else
-    new_resource.roles
-  end
-end
-
 def home_dir
   if new_resource.home.nil?
     home = new_resource.username
