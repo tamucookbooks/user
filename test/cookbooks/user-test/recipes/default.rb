@@ -23,5 +23,6 @@ end
 
 user_account 'jackie' do
   include_nodes node.name
+  uid '1080'
   action :create
 end
