@@ -26,13 +26,13 @@ action :create do
     unless ssh_keys.nil?
       directory "#{home_dir}/.ssh" do
         action :create
-        mode 0500
+        mode 0700
         owner new_resource.username
         group new_resource.username
       end
 
       template "#{home_dir}/.ssh/authorized_keys" do
-        mode 0400
+        mode 0600
         owner new_resource.username
         group new_resource.username
         action :create
