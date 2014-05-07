@@ -33,10 +33,17 @@ end
 
 user_account 'richard' do
   gid 'users'
+  ssh_keys "this is not a real ssh key"
   action :create
 end
 
 user_account 'adam' do
   gid 0
+  ssh_keys "this is not a real ssh key"
   action :create
+end
+
+user_account 'remove_adam' do
+  username 'adam'
+  action :remove
 end
