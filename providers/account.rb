@@ -7,7 +7,7 @@ action :create do
     end
 
     user new_resource.username do
-      if new_resource.gid.nil? 
+      if new_resource.gid.nil?
         gid new_resource.username
       else
         gid new_resource.gid
