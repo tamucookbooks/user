@@ -27,6 +27,10 @@ user_account 'jackie' do
   action :create
 end
 
+group 'users' do
+  action :create
+end
+
 user_account 'richard' do
   gid 'users'
   action :create
