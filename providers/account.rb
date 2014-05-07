@@ -1,18 +1,17 @@
 action :create do
   if add_user_account
-    if new_resource.default_group.nil?
-      group new_resource.username do
-        gid new_resource.uid unless new_resource.uid.nil?
-        action :create
-      end
+    group new_resource.username do
+      gid new_resource.uid unless new_resource.uid.nil?
+      action :create
+      only_if { new_resource.gid.nil? }
     end
 
     user new_resource.username do
-      gid (if new_resource.default_group.nil? 
-            new_resource.username
-          else
-            new_resource.default_group
-          end)
+      if new_resource.gid.nil? 
+        gid new_resource.username
+      else
+        gid new_resource.gid
+      end
       home home_dir
       password new_resource.password unless new_resource.password.nil?
       shell new_resource.shell || node['user']['default_shell']

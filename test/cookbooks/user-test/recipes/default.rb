@@ -28,6 +28,11 @@ user_account 'jackie' do
 end
 
 user_account 'richard' do
-  default_group 'users'
+  gid 'users'
+  action :create
+end
+
+user_account 'adam' do
+  gid 0
   action :create
 end
