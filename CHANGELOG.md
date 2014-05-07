@@ -1,6 +1,10 @@
 user CHANGELOG
 ==============
 
+0.2.1
+-----
+- [ecwws] - update permissions to support new gid options
+
 0.2.0
 -----
 - [ecwws] - added support for setting user primary group
