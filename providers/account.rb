@@ -8,8 +8,11 @@ action :create do
     end
 
     user new_resource.username do
-      gid new_resource.default_group.nil? ? new_resource.username :
-                                            new_resource.default_group
+      gid (if new_resource.default_group.nil? 
+            new_resource.username
+          else
+            new_resource.default_group
+          end)
       home home_dir
       password new_resource.password unless new_resource.password.nil?
       shell new_resource.shell || node['user']['default_shell']
