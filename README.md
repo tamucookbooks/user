@@ -38,6 +38,7 @@ Resource/Provider
 ### Attributes
 - **username** - name of user account
 - **password** - user password
+- **default_group** - name of an existing default group to place user in (instead of creating a group same as username)
 - **groups** - array of groups to add to the user
 - **home** - override home dir if desired
 - **manage_home** - whether to create the home dir

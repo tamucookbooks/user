@@ -26,3 +26,8 @@ user_account 'jackie' do
   uid '1080'
   action :create
 end
+
+user_account 'richard' do
+  default_group 'users'
+  action :create
+end
