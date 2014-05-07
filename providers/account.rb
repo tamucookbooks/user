@@ -5,13 +5,11 @@ action :create do
       action :create
       only_if { new_resource.gid.nil? }
     end
+    
+    group_id = new_resource.gid.nil? ? new_resource.username : new_resource.gid
 
     user new_resource.username do
-      if new_resource.gid.nil?
-        gid new_resource.username
-      else
-        gid new_resource.gid
-      end
+      gid group_id
       home home_dir
       password new_resource.password unless new_resource.password.nil?
       shell new_resource.shell || node['user']['default_shell']
@@ -24,7 +22,7 @@ action :create do
       action :create
       mode 0755
       owner new_resource.username
-      group new_resource.username
+      group group_id
       only_if { new_resource.manage_home }
     end
 
@@ -33,13 +31,13 @@ action :create do
         action :create
         mode 0700
         owner new_resource.username
-        group new_resource.username
+        group group_id
       end
 
       template "#{home_dir}/.ssh/authorized_keys" do
         mode 0600
         owner new_resource.username
-        group new_resource.username
+        group group_id
         action :create
         source 'authorized_keys.erb'
         cookbook 'user'
@@ -81,7 +79,7 @@ action :remove do
   end
   usr.run_action :remove
 
-  grp = group new_resource.username do
+  grp = group group_id do
     action :nothing
   end
 
