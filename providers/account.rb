@@ -79,7 +79,7 @@ action :remove do
   end
   usr.run_action :remove
 
-  grp = group group_id do
+  grp = group new_resource.username do
     action :nothing
   end
 
