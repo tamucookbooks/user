@@ -1,6 +1,10 @@
 user CHANGELOG
 ==============
 
+0.2.0
+-----
+- [ecwws] - added support for setting user primary group
+
 0.1.1
 -----
 - [jarosser06] - removed unsused code
