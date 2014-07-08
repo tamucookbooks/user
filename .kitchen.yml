@@ -11,10 +11,10 @@ platforms:
   - name: centos-7.0
   - name: centos-6.5
   - name: sles-11sp3
-  - name: omnios-r151008j
+  - name: omnios-r151010j
     driver_config:
-      box: omnios-r151008j
-      box_url: http://omnios.omniti.com/media/OmniOS_r151008j-r1.box
+      box: omnios-r151010j
+      box_url: http://public-mirror.tamu.edu/baseboxes/omnios-r151010j.box
 
 suites:
   - name: default
