@@ -83,6 +83,13 @@ action :remove do
     action :nothing
   end
 
+  directory "#{new_resource.username}_home_dir" do
+    path home_dir
+    action :delete
+    recursive true
+    only_if { new_resource.delete_home_dir }
+  end
+
   grp.run_action :remove
 
   if grp.updated_by_last_action? || usr.updated_by_last_action?
