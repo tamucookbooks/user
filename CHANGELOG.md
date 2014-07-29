@@ -1,6 +1,10 @@
 user CHANGELOG
 ==============
 
+0.3.1
+-----
+- [vblessing] - fixed test for not deleting home dir on remove action
+
 0.3.0
 -----
 - [vblessing] - added home directory deletion to remove action
