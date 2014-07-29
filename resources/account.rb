@@ -12,3 +12,4 @@ attribute :shell, kind_of: String
 attribute :include_nodes, kind_of: [String, Array]
 attribute :exclude_nodes, kind_of: [String, Array]
 attribute :password, kind_of: String
+attribute :delete_home_dir, kind_of: [TrueClass, FalseClass], default: true
