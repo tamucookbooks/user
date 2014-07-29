@@ -1,6 +1,10 @@
 user CHANGELOG
 ==============
 
+0.3.0
+-----
+- [vblessing] - added home directory deletion to remove action
+
 0.2.1
 -----
 - [ecwws] - update permissions to support new gid options
