@@ -47,3 +47,15 @@ user_account 'remove_adam' do
   username 'adam'
   action :remove
 end
+
+user_account 'frank' do
+  uid 1030
+  ssh_keys "this is not a real ssh key"
+  action :create
+end
+
+user_account 'remove_frank' do
+  username 'frank'
+  delete_home_dir false
+  action :remove
+end
