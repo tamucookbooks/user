@@ -1,6 +1,10 @@
 user CHANGELOG
 ==============
 
+0.4.0
+-----
+- [joraff] - update default.rb for chef 13.x deprecation
+
 0.3.1
 -----
 - [vblessing] - fixed test for not deleting home dir on remove action
